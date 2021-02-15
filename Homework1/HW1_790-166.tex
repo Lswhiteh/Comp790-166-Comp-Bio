@@ -10,6 +10,8 @@
 \usepackage[plain]{algorithm}
 \usepackage{algpseudocode}
 \usepackage{hyperref}
+\usepackage{listings}
+\lstset{language=Python}
 \usetikzlibrary{automata,positioning}
 
 %
@@ -155,7 +157,13 @@
 Consider an undirected, unweighted graph with $N$ nodes and its corresponding adjacency matrix, ${\bf A}$. 
 \begin{itemize}
 \item (5 points) Let ${\bf 1}$ be the column vector of only 1s, and in this case, $N$ 1s. Using ${\bf A}$ and ${\bf 1}$, write an expression for a vector of node degrees, ${\bf k}$, such that the $i$th entry of ${\bf k}$, $k_{i}$, represents the number of edges incident on node $i$. 
+\begin{itemize}
+    \item k_i = A * ${\bf 1}$.T
+\end{itemize}
 \item (3 points) Again, using ${\bf A}$ and ${\bf 1}$ write an expression for the total number of edges in the graph. 
+    \begin{itemize}
+        \item 2m = \sum{k_i}^N_{i=1}
+    \end{itemize}
 \item (1 point) Verify the two expressions that you just defined for the following matrix, ${\bf A}$, and show that you get ${\bf k}=[1, 2 ,1]$ and that the number of edges in the graph is 2. You can show this by drawing the graph. 
 
 %\begin{equation}
@@ -171,10 +179,41 @@ Consider an undirected, unweighted graph with $N$ nodes and its corresponding ad
 
 %\end{equation}
 
+\item 
+
 \item (10 points) ({\bf Graph Laplacian}) Recall that the the un-normalized Graph Laplacian, ${\bf L}$ is defined as ${\bf L}={\bf D} - {\bf A}$. Use the provided graph (encoded as an edgelist) \path{cell_graph.edgelist} and write a function that computes the Graph Laplacian. As a reminder, ${\bf D}$ is an $N \times N$ matrix with node degrees on the diagonal, and ${\bf A}$ is the adjacency matrix. You can copy and paste your code or take a screen shot, since it should only be a few lines of code.
+
+\begin{lstlisting}
+    
+    import numpy as np
+    arr = np.ndarray
+
+    def comp_graph_lap(edgemat: arr) -> arr:
+        dmat = np.zeros((edgemat.max() + 1, edgemat.max() + 1))
+        adjmat = np.zeros(dmat.shape)
+        for edge in edgemat:
+            dmat[edge[0], edge[0]] += 1
+            dmat[edge[1], edge[1]] += 1
+            adjmat[edge[0], edge[1]] += 1
+            adjmat[edge[1], edge[0]] += 1
+        return np.subtract(dmat, adjmat)
+
+    if __name__ == "__main__":
+        edgemat = np.genfromtxt("cell_graph.edgelist", dtype=int)
+        graph_lap = comp_graph_lap(edgemat)
+        eigs = np.linalg.eig(graph_lap)
+
+\end{lstlisting}
+
 \begin{itemize}
 \item (3 points) Use the function you just wrote to calculate the Graph Laplacian of the Graph stored in \path{cell_graph.edgelist}. Make a histogram to visualize the distribution of eigenvalues of ${\bf L}$. What is the smallest eigenvalue of ${\bf L}$? (hint: you can use \url{https://numpy.org/doc/stable/reference/generated/numpy.linalg.eig.html#numpy.linalg.eig}, or equivalent.) 
+\begin{itemize}
+    \item The smallest eigenvalue is -4.35814660e-14, but I have a feeling it should be 0, which in a graph laplacian represents a connection in the graph.
+\end{itemize}
 \item (1 point) How does the observation of this smallest eigenvalue relate to the structure of the graph?  
+\begin{itemize}
+    \item 0 Eigenvalues represent contiguous connections in the graph, where there is a connection that has a beginning and end that is separated from other connections, this could be between only 2 edges or could span many.
+\end{itemize}
 \end{itemize}
 \end{itemize}  
 
