@@ -1,0 +1,210 @@
+\documentclass{article}
+
+\usepackage{fancyhdr}
+\usepackage{extramarks}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{tikz}
+\usepackage{url}
+\usepackage[plain]{algorithm}
+\usepackage{algpseudocode}
+\usepackage{hyperref}
+\usetikzlibrary{automata,positioning}
+
+%
+% Basic Document Settings
+%
+
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in
+
+\linespread{1.1}
+
+\pagestyle{fancy}
+\lhead{\hmwkAuthorName}
+\chead{\hmwkClass\ (\hmwkTitle}
+\rhead{\firstxmark}
+\lfoot{\lastxmark}
+\cfoot{\thepage}
+
+\renewcommand\headrulewidth{0.4pt}
+\renewcommand\footrulewidth{0.4pt}
+
+\setlength\parindent{0pt}
+
+%
+% Create Problem Sections
+%
+
+%\newcommand{\enterProblemHeader}[1]{
+%    \nobreak\extramarks{}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+%    \nobreak\extramarks{Problem \arabic{#1} (continued)}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+%}
+%
+%\newcommand{\exitProblemHeader}[1]{
+%    \nobreak\extramarks{Problem \arabic{#1} (continued)}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+%    \stepcounter{#1}
+%    \nobreak\extramarks{Problem \arabic{#1}}{}\nobreak{}
+%}
+%
+%\setcounter{secnumdepth}{0}
+%\newcounter{partCounter}
+%\newcounter{homeworkProblemCounter}
+%\setcounter{homeworkProblemCounter}{1}
+%\nobreak\extramarks{Problem \arabic{homeworkProblemCounter}}{}\nobreak{}
+
+%
+% Homework Problem Environment
+%
+% This environment takes an optional argument. When given, it will adjust the
+% problem counter. This is useful for when the problems given for your
+% assignment aren't sequential. See the last 3 problems of this template for an
+% example.
+%
+\newenvironment{homeworkProblem}[1][-1]{
+    \ifnum#1>0
+        \setcounter{homeworkProblemCounter}{#1}
+    \fi
+    \section{Problem \arabic{homeworkProblemCounter}}
+    \setcounter{partCounter}{1}
+    \enterProblemHeader{homeworkProblemCounter}
+}{
+    \exitProblemHeader{homeworkProblemCounter}
+}
+
+%
+% Homework Details
+%   - Title
+%   - Due date
+%   - Class
+%   - Section/Time
+%   - Instructor
+%   - Author
+%
+
+\newcommand{\hmwkTitle}{Project Proposal)}
+\newcommand{\hmwkDueDate}{February 18, 2021}
+\newcommand{\hmwkClass}{Comp790-CompBio}
+%\newcommand{\hmwkClassTime}{Section A}
+%\newcommand{\hmwkClassInstructor}{Professor Isaac Newton}
+\newcommand{\hmwkAuthorName}{\textbf{Your Names Here}} %%modify with your name
+
+%
+% Title Page
+%
+
+\title{
+    \vspace{2in}
+    \textmd{\textbf{\hmwkClass\hmwkTitle}}\\
+    \normalsize\vspace{0.1in}\small{Due\ on\ \hmwkDueDate\ at 3:10pm}\\
+    %$\vspace{0.1in}\large{\textit{\hmwkClassInstructor\ }}
+    \vspace{3in}
+}
+
+\author{\hmwkAuthorName}
+\date{}
+
+\renewcommand{\part}[1]{\textbf{\large Part \Alph{partCounter}}\stepcounter{partCounter}\\}
+
+%
+% Various Helper Commands
+%
+
+% Useful for algorithms
+\newcommand{\alg}[1]{\textsc{\bfseries \footnotesize #1}}
+
+% For derivatives
+\newcommand{\deriv}[1]{\frac{\mathrm{d}}{\mathrm{d}x} (#1)}
+
+% For partial derivatives
+\newcommand{\pderiv}[2]{\frac{\partial}{\partial #1} (#2)}
+
+% Integral dx
+\newcommand{\dx}{\mathrm{d}x}
+
+% Alias for the Solution section header
+\newcommand{\solution}{\textbf{\large Solution}}
+
+% Probability commands: Expectation, Variance, Covariance, Bias
+\newcommand{\E}{\mathrm{E}}
+\newcommand{\Var}{\mathrm{Var}}
+\newcommand{\Cov}{\mathrm{Cov}}
+\newcommand{\Bias}{\mathrm{Bias}}
+
+\begin{document}
+
+%\maketitle
+
+%\pagebreak
+\begin{itemize}
+\item Your project proposal is due by email to \path{natalies@cs.unc.edu+comp790} by 11:59pm on March 9. 
+\item You only need to submit one document per group. Please cc all members of your group on the email so that everyone gets credit for completing the proposal.  
+\item Feel free to write as much as you need to address the following about your project. For example, a paragraph is probably sufficient for each section. 
+\item You do not need to use this LaTeX template, but please ultimately submit a PDF. 
+\end{itemize}
+
+\section{Title}
+
+Learning from Trees for Population Genetic Inference
+
+\section{Group Members}
+
+Logan Whitehouse, Nick Matthew
+
+\section{Abstract}
+
+Write a 3-5 sentence summary of the main idea of your project. For example, \\
+
+\emph{Tree sequences, or series of genealogical histories along the span of a genomic region, are a recently developed data structure in population genetics that allows for a high-resolution depiction of how genetic history changes along the genome. \
+We intend to use a variety of methods, such as Node2Vec, to represent tree sequences in a format that is informative for machine learning frameworks to build a demographic-history classifier model from simulated demographic histories. \
+We also intend to do tree learning across empirical genomes to do exploratory analysis of how tree sequences describe different demographic events at different loci.}
+
+\section{Formal Statement of the Problem}
+Demographic inference is a large focus of study in population genetics, as it forms the basis of understanding how current populations were influenced by historical genetic events such as selection, introgression, admixture, and more. Being able to infer the events in the history of a genome allows for inferring aspects of evolution and movement throughout time, as well as the interaction between populations at various points. 
+Along those lines, but adjacent to purely classifying demographic history, exploring the relatedness of genetic histories along the genome using tree sequences has the potential to reveal the extent to which different genomic elements undergo various types of demographic events, and characterize how genetic influences such as selection can influence a population's differences and similarities.
+
+\section{Related Work}
+Tree sequences are a relatively new data structure in population genetics, and as such they have not been fully exploited for the purposes we intend to use them. There are, however, some attempts to do both demographic inference as well as characterize the genetic events along a genome. One of the most common tools for doing demographic inference is known as Approximate Bayesian Computation. In short, known models are simulated with a wide variety of parameterizations and compared to the empirical data for which the model is unknown, and by computing some similarity metric it is possible to infer what the most likely parameterization of the empirical model is by finding the most similar simulation results.
+In terms of population structure and genetic events along the genome, there has been recent work by the Ralph lab (https://www.genetics.org/content/211/1/289) to do PCA along a genome and then explore population structure by clustering and analyzing localized PCA signals along the genome. This is a promising first step showing that these features are able to be extracted from the genome using a known method (PCA has long been used to identify population structure in genomics data), but we think that by utilizing tree sequences along the genome along with some sort of embedding we will be able to achieve even more nuanced understanding and characterization of population structure and events throughout the genome. 
+
+\section{Contributions}
+We expect to provide both a novel machine learning pipeline for classifying demographic histories and a pipeline for doing iterative tree embedding and characterization of tree sequences along empirical genomes. Regardless of accuracy of models, we anticipate being able to provide examples of how thhis data strcture can be further utilized in population genetics by applying techniques to analyze and learn from graphs, something previously not done in the field.
+
+\section{Datasets}
+
+We will use simulated demographic models that are currently available in the lab but not public for the demographic inference problem, and tree sequences already generate for 1000Genomes data will be used for the secondary genome characterization experiment.
+
+\section{Intended Experiments}
+\begin{itemize}
+    \item Demographic Inference
+    \begin{itemize}
+        \item Simulate demographic models under many different conditions (complete)
+        \item Perform graph embedding to use as neural network input (in progress)
+        \item Create a neural network model to classify demographies using graph embeddings as input
+        \item Repeat the process using other tools for learning graph representations and compare classification accuracy.
+    \end{itemize}
+    \item Genome Tree Characterization
+    \begin{itemize}
+        \item Download and preprocess tree sequences for 1000G Datasets
+        \item Perform graph embedding for all trees along the genome in the sequences
+        \item Characterize tree similarities by clustering and alternate similarity measures.
+    \end{itemize}
+\end{itemize}
+
+\section{Expected Challenges}
+Neural network architecture is a consistent challenge, especially when working with data types that are not fully explored in the area yet. We anticipate the best model architecture will be a multi-branch model combining a fully-connected networkk embedded within an LSTM or 1D Convolutional neural network to learn from graph embeddings, and another branch of a fully-connected block to learn node features, which will then be concatenated into a softmax output for estimating probability of demographic model for input.
+Embedding as many trees as is required for tree sequences in our simulations (~10,000 tree sequences of varying number of trees) will be both computationally and time intensive. We anticipate needing to parallelize the process to a high-degree in order to get results quickly.
+
+\section{Implementation}
+Our code will use a combination of previously simulated and publicly available data consisting of inferred tree sequences of genetic data. The output will be 1) a trained neural network for performing demographic inference on new inputs, as well as a set of model performance characterization for the first experiment, and 2) a series of analyses characterizing how informative tree sequences are at describing the various aspects of genetic history along a genome.
+
+\section{Preliminary Results}
+Another member of our lab has attempted to learn directly from tree sequences using Graph Convolutional Networks, a form of neural network that is similar to a standard convolutional network but learns from graphs instead of images. The network performed poorly on a 10-way demographic inference dataset, only achieving 0.18 accuracy.
+We are currently embedding tree sequences of that demographic model simulation dataset using both Node2Vec and Graph2Vec, a toolset for embedding the entirety of a graph structure instead of just the nodes.
+
+\end{document}
